@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+            color: black;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: linear-gradient(to bottom, #87CEEB, #90EE90);
+            background-attachment: fixed;
+            /* background-image: url('img/bg4.jpg');
+            background-size: cover;
+            background-repeat: no-repeat; */
+        }
+
+        .side_menu{
+                display: none;
+        }
+
+        @media screen and (max-width: 768px) {
+            nav{
+                display: none;
+            }
+            .side_menu{
+                display: block;
+            }
+            main{
+                backdrop-filter: blur(3px); /* Adjust the blur radius as needed */
+                -webkit-backdrop-filter: blur(3px); /* For Safari support */
+                padding: 0px 30px;
+            }
+            .main-content {
+                height: auto;
+            }
+        }
+        main{
+            height: auto;
+        }
+        /*CSS for header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background-color: #000000;
+        }
+
+        .logo img {
+            margin-left: 10px;
+            max-width: 100%;
+            height: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav li {
+            margin-right: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+        
+        /* Style main content */
+        .main-content {
+            width: auto;
+            padding: 20px;
+            text-align: center;
+            max-width: 800px;
+            margin: 180px auto;
+            backdrop-filter: blur(3px); /* Adjust the blur radius as needed */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 30px;
+        }
+
+        .prediction-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #000000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .prediction-button:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+        /* CSS for Side Menu*/
+        .menu-button {
+            position: sticky;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            z-index: 2;
+        }
+        .menu-icon {
+            width: 20px;
+            height: 20px;
+        }
+        .menu {
+            position: fixed;
+            top: 0;
+            right: -120%;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(3px);
+            padding: 20px;
+            color: #ffffff;
+            transition: right 0.3s ease-in-out;
+            z-index: 1;
+        }
+        .menu ul {
+            list-style: none;
+            padding: 80px 35px;
+            float: left;
+        }
+        .menu li {
+            margin-bottom: 30px;
+        }
+        .menu a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+        #closeBtn {
+            background: none;
+            border: none;
+            color: #ffffff;
+            cursor: pointer;
+            padding: 20px 20px 20px;
+            float: right;
+        }
+        .img_btn{
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7499%) hue-rotate(0deg) brightness(100%) contrast(100%);
+        }
+        .buttons{
+            margin: auto;
+        }
+        .button {
+            margin: 0px 25px;
+            font-weight: bold;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #000000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+        form {
+            display: grid;
+            gap: 20px;
+        }
+        ::placeholder{
+            color: black;
+            text-align: left;
+        }
+        label {
+            font-weight: bold;
+        }
+
+        input,select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        select{
+            width: 100%;
+        }
+        input{
+            width: 97%;
+        }
+        .results{
+            display: none;
+            margin: 20px;
+            padding: 20px;
+        }
+        label{
+            text-align: left;
+        }
+        span a{
+            color: white;
+            font-family: cursive;
+            text-decoration: none;
+        }
+    </style>
+    <title>Loan Predictor Home</title>
+</head>
+<body>
+    <!--Header-->
+    <header>
+        <!--Logo-->
+        <div class="logo">
+            <span><a href="index.html">Loan Prediction System</a></span>
+        </div>
+
+        <!--Menu -->
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+            </ul>
+        </nav>
+
+        <!--Side Menu-->
+        <div class="side_menu">
+            <button id="openBtn" class="menu-button">
+                <img src="img/open.svg" alt="Menu" class="img_btn">
+            </button>
+            <div id="menu" class="menu">
+            <button id="closeBtn">
+                <img src="img/close.svg" alt="Close" class="img_btn">
+            </button>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+            </ul>
+            </div>
+        </div>
+
+        <!--JavaScript to open & Close Side Menu-->
+        <script>
+            const openBtn = document.getElementById("openBtn");
+            const closeBtn = document.getElementById("closeBtn");
+            const menu = document.getElementById("menu");
+        
+            openBtn.addEventListener("click", () => {
+                menu.style.right = "-10px";
+                openBtn.style.display = "none";
+            });
+        
+            closeBtn.addEventListener("click", () => {
+                menu.style.right = "-120%";
+                //To add 3 sec delay to show button!! 300 mili sec = 0.3 sec 
+                setTimeout(() => {
+                openBtn.style.display = "block";
+                }, 300);
+            });
+        </script>
+
+    </header>
+
+
+    <!--Main-->
+    <main>
+        <div class="main-content">
+            <h1>Loan Eligiblitiy Checker</h1>
+            <p>Kindly click below prediction button & fill out the form to check whether you are eligible for the selected loan amount or not. Thank You.</p>
+
+            <!--User Data Collection From-->
+            <form id="contact-form" action='/predict.html' method='POST'>
+
+                <!-- 1 - Select Gender-->
+                <label for="Gender">Gender</label>
+                <select class="form-select" aria-label="Default select example" id="Gender" name="Gender" required>
+                    <option selected>--Select Gender--</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+
+                <!-- 2 - Select Marital Status-->
+                <label for="Married">Maried</label>
+                <select class="form-select" aria-label="Default select example" id="Married" name="Married" required>
+                    <option selected>--Select Marital Status--</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+
+                <!-- 3 - Select dependents-->
+                <label for="Dependents">Dependents</label>
+                <select class="form-select" aria-label="Default select example" id="Dependents" name="Dependents" required>
+                    <option selected>--Select Dependents--</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3+</option>
+                </select>
+
+                <!-- 4 - Select Education-->
+                <label for="Education">Education</label>
+                <select class="form-select" aria-label="Default select example" id="Education" name="Education" required>
+                    <option selected>-- select education --</option>
+                    <option value="Graduated">Graduate</option>
+                    <option value="Not_Graduated">Not Graduate</option>
+                </select>
+                <!-- 5 - Self Employeed-->
+                <label for="Self_Employed">Self Employed</label>
+                <select class="form-select" aria-label="Default select example" id="Self_Employed" name="Self_Employed" required>
+                    <option selected>-- select Self_Employed --</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+
+                <!-- 6 - ApplicantIncome-->
+                <label for="ApplicantIncome">ApplicantIncome</label>
+                <input type="number" class="form-control" id="ApplicantIncome" name="ApplicantIncome" placeholder="ApplicantIncome" required>
+
+                <!-- 7 - CoapplicantIncome-->
+                <label for="coapplicantIncome">coapplicantIncome</label>
+                <input type="number" class="form-control" id="CoapplicantIncome" name="CoapplicantIncome" placeholder="CoapplicantIncome" required>
+                
+                <!-- 8 - LoanAmount-->
+                <label for="LoanAmount">Loan Amount</label>
+                <input type="number" class="form-control" id="LoanAmount" name="LoanAmount" placeholder="LoanAmount" required>
+                
+                <!-- 9 - Loan_Amount_Term-->
+                <label for="Loan_Amount_Term">Loan_Amount_Term</label>
+                <input type="number" class="form-control" id="Loan_Amount_Term" name="Loan_Amount_Term" placeholder="Loan_Amount_Term" required> 
+                
+                <!-- 10 - Credit History-->
+                <label for="Credit_History">Credit_History</label>
+                <select class="form-select" aria-label="Default select example" id="Credit_History" name="Credit_History" required>
+                    <option selected>-- select Credit_History --</option>
+                    <option value="1.0">1.0</option>
+                    <option value="0.0">0.0</option>
+                </select>
+                
+                <!-- 11 - Property Area-->
+                <label for="Property_Area">Property_Area</label>
+                <select class="form-select" aria-label="Default select example" id="Property_Area" name="Property_Area" required>
+                    <option selected>-- select Property_Area --</option>
+                    <option value="Semiurban">Semiurban</option>
+                    <option value="Urban">Urban</option>
+                    <option value="Rural">Rural</option>
+                </select>
+                
+                
+                
+                
+
+            <div class="buttons">
+                <button type="submit" id="btn1" class="button" onclick="result()">Predict</button>
+                <button type="button" id="btn2" class="button" onclick="goToIndex()">Cancel</button>
+            </div>
+            </form>
+            <div id="res" class="results" style="display: none;">
+                <h1>{{prediction_text}}</h1>
+            </div>
+                <script>
+                    function goToIndex() {
+                        window.location.href = 'index.html';
+                    }
+                    function result(){
+                        console.log(1)
+                        var element = document.getElementById("res");
+                        element.style.display = "block";
+                    }
+                </script>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

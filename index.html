@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+            color: black;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: linear-gradient(to bottom, #87CEEB, #90EE90);
+            background-attachment: fixed;
+            /* background-image: url('img/bg4.jpg');
+            background-size: cover;
+            background-repeat: no-repeat; */
+        }
+
+        .side_menu{
+                display: none;
+        }
+
+        @media screen and (max-width: 768px) {
+            nav{
+                display: none;
+            }
+            .side_menu{
+                display: block;
+            }
+            main{
+                backdrop-filter: blur(3px); /* Adjust the blur radius as needed */
+                -webkit-backdrop-filter: blur(3px); /* For Safari support */
+                padding: 0px 30px;
+            }
+            .main-content {
+                height: auto;
+            }
+        }
+        main{
+            height: auto;
+        }
+        /*CSS for header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #000000;
+        }
+
+        .logo img {
+            margin-left: 10px;
+            max-width: 100%;
+            height: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav li {
+            margin-right: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+        
+        /* Style main content */
+        .main-content {
+            width: auto;
+            padding: 20px;
+            text-align: center;
+            max-width: 800px;
+            margin: 180px auto;
+            backdrop-filter: blur(3px); /* Adjust the blur radius as needed */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 30px;
+        }
+
+        .prediction-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #000000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .prediction-button:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+        /* CSS for Side Menu*/
+        .menu-button {
+            position: sticky;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            z-index: 2;
+        }
+        .menu-icon {
+            width: 20px;
+            height: 20px;
+        }
+        .menu {
+            position: fixed;
+            top: 0;
+            right: -120%;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(3px);
+            padding: 20px;
+            color: #ffffff;
+            transition: right 0.3s ease-in-out;
+            z-index: 1;
+        }
+        .menu ul {
+            list-style: none;
+            padding: 80px 35px;
+            float: left;
+        }
+        .menu li {
+            margin-bottom: 30px;
+        }
+        .menu a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+        #closeBtn {
+            background: none;
+            border: none;
+            color: #ffffff;
+            cursor: pointer;
+            padding: 20px 20px 20px;
+            float: right;
+        }
+        .img_btn{
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7499%) hue-rotate(0deg) brightness(100%) contrast(100%);
+        }
+        span a{
+            color: white;
+            font-family: cursive;
+            text-decoration: none;
+        }
+    </style>
+    <title>Loan Predictor Home</title>
+</head>
+<body>
+    <!--Header-->
+    <header>
+        <!--Logo-->
+        <div class="logo">
+            <span><a href="index.html">Loan Prediction System</a></span>
+            <!-- <a href="index.html"><img src="img/logo.png" alt="Company Logo"></a> -->
+        </div>
+
+        <!--Menu -->
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+            </ul>
+        </nav>
+
+        <!--Side Menu-->
+        <div class="side_menu">
+            <button id="openBtn" class="menu-button">
+                <img src="img/open.svg" alt="Menu" class="img_btn">
+            </button>
+            <div id="menu" class="menu">
+            <button id="closeBtn">
+                <img src="img/close.svg" alt="Close" class="img_btn">
+            </button>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+            </ul>
+            </div>
+        </div>
+
+        <!--JavaScript to open & Close Side Menu-->
+        <script>
+            const openBtn = document.getElementById("openBtn");
+            const closeBtn = document.getElementById("closeBtn");
+            const menu = document.getElementById("menu");
+        
+            openBtn.addEventListener("click", () => {
+                menu.style.right = "-10px";
+                openBtn.style.display = "none";
+            });
+        
+            closeBtn.addEventListener("click", () => {
+                menu.style.right = "-120%";
+                //To add 3 sec delay to show button!! 300 mili sec = 0.3 sec 
+                setTimeout(() => {
+                openBtn.style.display = "block";
+                }, 300);
+            });
+        </script>
+
+    </header>
+
+
+    <!--Main-->
+    <main>
+        <div class="main-content">
+            <h1>Loan Prediction System</h1>
+            <p>Kindly click below prediction button & fill out the form to check whether you are eligible for the selected loan amount or not. Thank You.</p>
+            <a class="prediction-button" href="/prediction.html">Check Eligiblity</a>
+        </div>
+    </main>
+</body>
+</html>
